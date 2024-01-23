@@ -10,10 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import datetime
 from pathlib import Path
 
 from .core.applist import *
 from .core.databases import *
+from .core.rest_framework import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +47,13 @@ MIDDLEWARE = [
 AUTH_USER_MODEL = 'accounts.User'  # Custom User Model
 
 ROOT_URLCONF = 'config.urls'
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": datetime.timedelta(days=1),
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "id",
+}
 
 TEMPLATES = [
     {
